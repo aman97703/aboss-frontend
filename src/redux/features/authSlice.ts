@@ -9,12 +9,10 @@ export interface IUserInfo {
 
 interface initialStateInterface {
   userInfo: IUserInfo | null;
-  isLoading: Boolean;
 }
 
 const initialState: initialStateInterface = {
   userInfo: null,
-  isLoading: false,
 };
 
 export const authSlice = createSlice({
@@ -24,14 +22,12 @@ export const authSlice = createSlice({
     setCredentials: (state, action: PayloadAction<IUserInfo>) => {
       state.userInfo = action.payload;
     },
-    setLoading: (state, action: PayloadAction<Boolean>) => {
-      state.isLoading = action.payload;
-    },
+   
     logout: (state) => {
       state.userInfo = null;
     },
   },
 });
 
-export const { logout, setCredentials, setLoading } = authSlice.actions;
+export const { logout, setCredentials } = authSlice.actions;
 export default authSlice.reducer;

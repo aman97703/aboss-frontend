@@ -9,14 +9,13 @@ import {
 import {
   logout,
   setCredentials,
-  setLoading,
 } from "../redux/features/authSlice";
 import { useEffect } from "react";
 
 const Navbar = () => {
   const { userInfo } = useSelector((state: RootState) => state.auth);
   const [logoutApiCall] = useLogoutMutation();
-  const { data, isLoading } = useGetUserDetailsQuery();
+  const { data } = useGetUserDetailsQuery();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const logoutHandler = async () => {
@@ -30,17 +29,10 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (data && !isLoading) {
+    if (data) {
       dispatch(setCredentials(data));
-      dispatch(setLoading(false));
     }
   }, [data]);
-
-  useEffect(() => {
-    if (isLoading) {
-      dispatch(setLoading(isLoading));
-    }
-  }, [isLoading]);
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 flex justify-center items-center h-12">
