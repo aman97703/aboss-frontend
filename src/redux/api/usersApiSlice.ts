@@ -65,6 +65,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: `${USERS_URL}/current`,
         method: "GET",
+        credentials:"include",
       }),
       providesTags: ["User"],
     }),
