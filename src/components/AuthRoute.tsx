@@ -6,11 +6,9 @@ interface AuthRouteProps {
   children: React.ReactElement;
 }
 const AuthRoute: React.FC<AuthRouteProps> = ({ children }) => {
-  const { userInfo, isLoading } = useSelector((state: RootState) => state.auth);
+  const { userInfo } = useSelector((state: RootState) => state.auth);
 
-  return isLoading ? (
-    <p>Loading....</p>
-  ) : userInfo ? (
+  return  userInfo ? (
     <Navigate to="/" replace />
   ) : (
     children
